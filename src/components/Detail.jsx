@@ -8,7 +8,7 @@ const Detail = () => {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
           <div className="md:w-2/5">
             <img 
-              src="/asset/img/fotofrans.jpg" 
+              src="/asset/img/fotoagent.jpeg" 
               alt="Frans Hutapea" 
               className="w-full h-full object-cover min-h-[400px]"
             />

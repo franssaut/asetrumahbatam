@@ -2,11 +2,15 @@ import React from 'react';
 import { MapPin } from 'lucide-react';
 import { formatRupiah } from '../format';
 
-const Card = ({ property }) => {
+const Card = ({ property, onSelect }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <a
+      href={`#detail-${property.id}`}
+      onClick={() => onSelect(property)}
+      className="group block bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
+    >
       <div className="relative h-64">
-        <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
+        <img src={property.image} alt={property.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
         <div className="absolute top-4 left-4 bg-teal-600 text-white text-sm font-bold px-3 py-1 rounded-full">
           {property.tag}
         </div>
@@ -24,7 +28,7 @@ const Card = ({ property }) => {
           <span>{property.sqft} m²</span>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

@@ -36,7 +36,7 @@ export const properties = [
     agent: "Frans Hutapea"
   },
   {
-    id: 2,
+    id: 4,
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -48,7 +48,7 @@ export const properties = [
     agent: "Frans Hutapea"
   },
   {
-    id: 2,
+    id: 5,
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -60,7 +60,7 @@ export const properties = [
     agent: "Frans Hutapea"
   },
   {
-    id: 2,
+    id: 6,
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -73,7 +73,7 @@ export const properties = [
   },
 
   {
-    id: 2,
+    id: 7,
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
