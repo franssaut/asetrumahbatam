@@ -1,18 +1,22 @@
 export const properties = [
   {
     id: 1,
-    title: "Ruko Taka Commercial Centre",
-    price: 1500000000,
-    location: "Batam Centre, Batam",
+    type: 36,
+    houseType: "Rumah",
+    title: "Perumahan Amalfi",
+    price: 300000000,
+    location: "Tembesi",
     beds: 0,
     baths: 2,
     sqft: 120,
-    image: "/asset/img/fotofrans.jpg",
+    image: "/asset/img/fotoagent.jpeg",
     tag: "Komersial",
     agent: "Frans Hutapea"
   },
   {
     id: 2,
+    type: 45,
+    houseType: "Rumah 2Lt",
     title: "Rumah Mewah Nagoya Hill",
     price: 2100000000,
     location: "Nagoya, Batam",
@@ -25,6 +29,8 @@ export const properties = [
   },
   {
     id: 3,
+    type: 36,
+    houseType: "Rumah",
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -37,6 +43,8 @@ export const properties = [
   },
   {
     id: 4,
+    type: 36,
+    houseType: "Rumah",
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -49,6 +57,8 @@ export const properties = [
   },
   {
     id: 5,
+    type: 36,
+    houseType: "Rumah",
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -61,6 +71,8 @@ export const properties = [
   },
   {
     id: 6,
+    type: 36,
+    houseType: "Rumah",
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
@@ -74,6 +86,8 @@ export const properties = [
 
   {
     id: 7,
+    type: 36,
+    houseType: "Rumah",
     title: "Cluster Minimalis Batu Aji",
     price: 650000000,
     location: "Batu Aji, Batam",
