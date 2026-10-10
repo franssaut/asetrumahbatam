@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Bath, BedDouble, Ruler } from 'lucide-react';
 import Card from './Card';
-import { properties } from '../data';
+import { PropertyDataNotice, useProperties } from '../PropertiesContext';
 import { formatRupiah } from '../format';
 
 const createSlides = (items) => {
@@ -87,6 +87,7 @@ const LocationCarousel = ({ location, items }) => {
 };
 
 const House = () => {
+  const { properties } = useProperties();
   const locationGroups = useMemo(() => {
     const groups = new Map();
 
@@ -105,6 +106,7 @@ const House = () => {
 
   return (
     <div id="properti" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <PropertyDataNotice />
       <div className="mb-10 text-center sm:text-left">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-teal-600 mb-2">Properti Pilihan</p>
         <h2 className="text-3xl font-bold text-gray-900">Jelajahi Listing Terbaik</h2>

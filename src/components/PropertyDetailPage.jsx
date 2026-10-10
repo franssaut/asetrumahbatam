@@ -1,11 +1,12 @@
 import React from 'react';
 import { ArrowLeft, Bath, BedDouble, MapPin, Ruler } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import { properties } from '../data';
+import { PropertyDataNotice, useProperties } from '../PropertiesContext';
 import { formatRupiah } from '../format';
 
 const PropertyDetailPage = () => {
   const { id } = useParams();
+  const { properties, status } = useProperties();
   const property = properties.find((item) => item.id === Number(id));
   const gallery = property?.gallery?.length ? property.gallery : [property?.image].filter(Boolean);
   const [selectedImage, setSelectedImage] = React.useState(gallery[0] || '');
@@ -17,6 +18,14 @@ const PropertyDetailPage = () => {
   }, [property?.id]);
 
   if (!property) {
+    if (status === 'loading') {
+      return (
+        <div className="mx-auto max-w-4xl px-4 py-32 text-center" role="status">
+          Memuat data properti...
+        </div>
+      );
+    }
+
     return (
       <div className="mx-auto max-w-4xl px-4 py-32 text-center">
         <h1 className="text-3xl font-bold text-gray-900">Properti tidak ditemukan</h1>
@@ -39,6 +48,10 @@ const PropertyDetailPage = () => {
         <ArrowLeft className="h-4 w-4" />
         Kembali
       </Link>
+
+      <div className="mt-6">
+        <PropertyDataNotice />
+      </div>
 
       <div className="mt-8 overflow-hidden rounded-[28px] bg-white shadow-[0_25px_60px_rgba(15,23,42,0.12)]">
         <div className="grid lg:grid-cols-2">

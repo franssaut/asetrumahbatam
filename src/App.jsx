@@ -4,6 +4,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import House from './components/House';
 import Detail from './components/Detail';
 import PropertyDetailPage from './components/PropertyDetailPage';
+import { PropertiesProvider } from './PropertiesContext';
 
 const HomePage = () => (
   <>
@@ -37,8 +38,9 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen font-sans">
-        <nav className="bg-white shadow-md fixed w-full z-10 top-0">
+      <PropertiesProvider>
+        <div className="min-h-screen font-sans">
+          <nav className="bg-white shadow-md fixed w-full z-10 top-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-20">
               <Link to="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
@@ -75,17 +77,18 @@ const App = () => {
               </a>
             </div>
           </div>
-        </nav>
+          </nav>
 
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/property/:id" element={<PropertyDetailPage />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/property/:id" element={<PropertyDetailPage />} />
+          </Routes>
 
-        <footer className="bg-gray-900 text-white py-8 text-center mt-10">
-          <p>&copy; 2026 Aset Rumah Batam. Hak Cipta Dilindungi.</p>
-        </footer>
-      </div>
+          <footer className="bg-gray-900 text-white py-8 text-center mt-10">
+            <p>&copy; 2026 Aset Rumah Batam. Hak Cipta Dilindungi.</p>
+          </footer>
+        </div>
+      </PropertiesProvider>
     </BrowserRouter>
   );
 };
