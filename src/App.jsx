@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home } from 'lucide-react';
+import { Home, Menu, X } from 'lucide-react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import House from './components/House';
 import Detail from './components/Detail';
@@ -33,21 +33,46 @@ const HomePage = () => (
 );
 
 const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen font-sans">
         <nav className="bg-white shadow-md fixed w-full z-10 top-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-20">
-              <Link to="/" className="flex items-center">
-                <Home className="h-8 w-8 text-teal-600" />
-                <span className="ml-2 text-2xl font-bold text-gray-900">Aset Rumah Batam</span>
+              <Link to="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
+                <Home className="h-7 w-7 text-teal-600 sm:h-8 sm:w-8" />
+                <span className="ml-2 text-lg font-bold text-gray-900 sm:text-2xl">Aset Rumah Batam</span>
               </Link>
               <div className="hidden md:flex items-center space-x-8">
                 <Link to="/" className="text-gray-600 hover:text-teal-600 font-medium">Beranda</Link>
                 <a href="/#properti" className="text-gray-600 hover:text-teal-600 font-medium">Properti</a>
                 <a href="/#agen" className="text-gray-600 hover:text-teal-600 font-medium">Agen Kami</a>
               </div>
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md text-gray-700 hover:bg-gray-100 md:hidden"
+                aria-label={isMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-navigation"
+                onClick={() => setIsMenuOpen((open) => !open)}
+              >
+                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
+          </div>
+          <div id="mobile-navigation" className={`${isMenuOpen ? 'block' : 'hidden'} border-t border-gray-100 bg-white md:hidden`}>
+            <div className="mx-auto flex max-w-7xl flex-col px-4 py-2 sm:px-6">
+              <Link to="/" className="py-3 font-medium text-gray-700 hover:text-teal-600" onClick={() => setIsMenuOpen(false)}>
+                Beranda
+              </Link>
+              <a href="/#properti" className="py-3 font-medium text-gray-700 hover:text-teal-600" onClick={() => setIsMenuOpen(false)}>
+                Properti
+              </a>
+              <a href="/#agen" className="py-3 font-medium text-gray-700 hover:text-teal-600" onClick={() => setIsMenuOpen(false)}>
+                Agen Kami
+              </a>
             </div>
           </div>
         </nav>
