@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/property/:id",
+      "destination": "/index.html"
+    }
+  ]
+}
