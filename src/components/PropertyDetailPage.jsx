@@ -10,6 +10,9 @@ const PropertyDetailPage = () => {
   const { properties, status } = useProperties();
   const propertyId = id || slug?.match(/-(\d+)$/)?.[1];
   const property = properties.find((item) => item.id === Number(propertyId));
+  const propertyUrl = property
+    ? new URL(propertyPath(property), window.location.origin).href
+    : '';
   const gallery = property?.gallery?.length ? property.gallery : [property?.image].filter(Boolean);
   const [selectedImage, setSelectedImage] = React.useState(gallery[0] || '');
 
@@ -162,7 +165,7 @@ const PropertyDetailPage = () => {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href={`https://wa.me/6282391059216?text=${encodeURIComponent(`Halo, saya tertarik dengan ${property.title}.`)}`}
+                href={`https://wa.me/6282391059216?text=${encodeURIComponent(`Halo, saya tertarik dengan ${property.title} di ${property.location}. Berikut link propertinya: ${propertyUrl}`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center rounded-lg bg-teal-600 px-5 py-3 font-medium text-white transition hover:bg-teal-700"
