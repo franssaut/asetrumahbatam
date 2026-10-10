@@ -82,6 +82,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/property/:id" element={<PropertyDetailPage />} />
+            <Route path="/properti/:slug" element={<PropertyDetailPage />} />
           </Routes>
 
           <footer className="bg-gray-900 text-white py-8 text-center mt-10">

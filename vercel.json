@@ -3,6 +3,10 @@
     {
       "source": "/property/:id",
       "destination": "/index.html"
+    },
+    {
+      "source": "/properti/:slug",
+      "destination": "/index.html"
     }
   ]
 }

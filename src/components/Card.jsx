@@ -1,12 +1,12 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { formatRupiah } from '../format';
+import { formatRupiah, propertyPath } from '../format';
 
 const Card = ({ property }) => {
   return (
     <Link
-      to={`/property/${property.id}`}
+      to={propertyPath(property)}
       className="group block bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
     >
       <div className="relative h-64">

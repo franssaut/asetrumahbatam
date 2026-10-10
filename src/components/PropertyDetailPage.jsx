@@ -1,13 +1,15 @@
 import React from 'react';
 import { ArrowLeft, Bath, BedDouble, MapPin, Ruler } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { PropertyDataNotice, useProperties } from '../PropertiesContext';
-import { formatRupiah } from '../format';
+import { formatRupiah, propertyPath } from '../format';
 
 const PropertyDetailPage = () => {
-  const { id } = useParams();
+  const { id, slug } = useParams();
+  const location = useLocation();
   const { properties, status } = useProperties();
-  const property = properties.find((item) => item.id === Number(id));
+  const propertyId = id || slug?.match(/-(\d+)$/)?.[1];
+  const property = properties.find((item) => item.id === Number(propertyId));
   const gallery = property?.gallery?.length ? property.gallery : [property?.image].filter(Boolean);
   const [selectedImage, setSelectedImage] = React.useState(gallery[0] || '');
 
@@ -16,6 +18,43 @@ const PropertyDetailPage = () => {
       setSelectedImage(gallery[0]);
     }
   }, [property?.id]);
+
+  React.useEffect(() => {
+    if (!property) return undefined;
+
+    const originalTitle = document.title;
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+    const originalDescription = descriptionMeta?.content;
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    const originalCanonical = canonicalLink?.href;
+    const metaDescription = descriptionMeta || document.createElement('meta');
+    const canonical = canonicalLink || document.createElement('link');
+
+    if (!descriptionMeta) {
+      metaDescription.name = 'description';
+      document.head.appendChild(metaDescription);
+    }
+    if (!canonicalLink) {
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+
+    document.title = `${property.title} di ${property.location} | Aset Rumah Batam`;
+    metaDescription.content = property.description;
+    canonical.href = new URL(propertyPath(property), window.location.origin).href;
+
+    return () => {
+      document.title = originalTitle;
+      if (originalDescription === undefined) metaDescription.remove();
+      else metaDescription.content = originalDescription;
+      if (originalCanonical === undefined) canonical.remove();
+      else canonical.href = originalCanonical;
+    };
+  }, [property]);
+
+  if (property && location.pathname !== propertyPath(property)) {
+    return <Navigate replace to={propertyPath(property)} />;
+  }
 
   if (!property) {
     if (status === 'loading') {
