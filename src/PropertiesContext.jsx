@@ -80,7 +80,7 @@ export const PropertyDataNotice = () => {
     ? 'Menghubungkan ke Supabase...'
     : status === 'fallback'
       ? `${error} Menampilkan data lokal.`
-      : 'Supabase belum dikonfigurasi. Menampilkan data lokal.';
+      : 'Supabase belum dikonfigurasi. Salin .env.example menjadi .env.local, isi VITE_SUPABASE_URL dan VITE_SUPABASE_ANON_KEY, jalankan supabase/schema.sql di SQL Editor Supabase, lalu restart Vite. Saat ini data lokal ditampilkan.';
 
   return (
     <p
