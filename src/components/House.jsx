@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Bath, BedDouble, Ruler } from 'lucide-react';
 import Card from './Card';
 import { properties } from '../data';
@@ -15,14 +15,6 @@ const House = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedProperty, setSelectedProperty] = useState(properties[0]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
 
   const goToPrevious = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
