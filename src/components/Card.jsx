@@ -1,12 +1,12 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { formatRupiah } from '../format';
 
-const Card = ({ property, onSelect }) => {
+const Card = ({ property }) => {
   return (
-    <a
-      href={`#detail-${property.id}`}
-      onClick={() => onSelect(property)}
+    <Link
+      to={`/property/${property.id}`}
       className="group block bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-500"
     >
       <div className="relative h-64">
@@ -26,17 +26,20 @@ const Card = ({ property, onSelect }) => {
             Type: {property.type}
           </span>
         </div>
-        <div className="flex items-center text-gray-600 mb-4">
+        <div className="flex items-center text-gray-600 mb-3">
           <MapPin className="h-4 w-4 mr-1" />
           <span className="text-sm">{property.location}</span>
         </div>
+        <p className="mb-4 text-sm leading-6 text-gray-600">
+          {property.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+        </p>
         <div className="pt-4 border-t border-gray-100 flex justify-between text-sm text-gray-500">
           <span>{property.beds} KT</span>
           <span>{property.baths} KM</span>
           <span>{property.sqft} m²</span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
