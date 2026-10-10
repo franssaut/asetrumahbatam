@@ -31,7 +31,7 @@ export const properties = [
     beds: 2,
     baths: 1,
     sqft: 72,
-    image: "public/asset/img/fotofrans.jpg",
+    image: "/asset/img/fotofrans.jpg",
     tag: "Residensial",
     agent: "Frans Hutapea"
   },
@@ -43,7 +43,7 @@ export const properties = [
     beds: 2,
     baths: 1,
     sqft: 72,
-    image: "public/asset/img/fotofrans.jpg",
+    image: "/asset/img/fotofrans.jpg",
     tag: "Residensial",
     agent: "Frans Hutapea"
   },
@@ -55,7 +55,7 @@ export const properties = [
     beds: 2,
     baths: 1,
     sqft: 72,
-    image: "public/asset/img/fotofrans.jpg",
+    image: "/asset/img/fotofrans.jpg",
     tag: "Residensial",
     agent: "Frans Hutapea"
   },
@@ -67,7 +67,7 @@ export const properties = [
     beds: 2,
     baths: 1,
     sqft: 72,
-    image: "public/asset/img/fotofrans.jpg",
+    image: "/asset/img/fotofrans.jpg",
     tag: "Residensial",
     agent: "Frans Hutapea"
   },
@@ -80,7 +80,7 @@ export const properties = [
     beds: 2,
     baths: 1,
     sqft: 72,
-    image: "public/asset/img/fotofrans.jpg",
+    image: "/asset/img/fotofrans.jpg",
     tag: "Residensial",
     agent: "Frans Hutapea"
   }
