@@ -20,7 +20,7 @@ const HomePage = () => (
 
       <div className="relative z-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center h-[500px] flex flex-col justify-center">
         <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
-          Jupen Rumah
+          Aset Rumah Batam
         </h1>
         <p className="mt-4 text-xl text-gray-200 max-w-3xl mx-auto">
           Temukan properti komersial dan hunian terbaik di Batam.
