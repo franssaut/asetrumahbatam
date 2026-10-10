@@ -12,7 +12,7 @@ const App = () => {
           <div className="flex justify-between h-20">
             <div className="flex items-center">
               <Home className="h-8 w-8 text-teal-600" />
-              <span className="ml-2 text-2xl font-bold text-gray-900">Frans Rumah Batam 2</span>
+              <span className="ml-2 text-2xl font-bold text-gray-900">Aset Rumah Batam</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#" className="text-gray-600 hover:text-teal-600 font-medium">Beranda</a>
