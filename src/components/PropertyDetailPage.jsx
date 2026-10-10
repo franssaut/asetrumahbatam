@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Bath, BedDouble, MapPin, Ruler } from 'lucide-react';
+import { ArrowLeft, Bath, BedDouble, Check, Copy, MapPin, Ruler } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { properties } from '../data';
 import { formatRupiah } from '../format';
@@ -9,6 +9,13 @@ const PropertyDetailPage = () => {
   const property = properties.find((item) => item.id === Number(id));
   const gallery = property?.gallery?.length ? property.gallery : [property?.image].filter(Boolean);
   const [selectedImage, setSelectedImage] = React.useState(gallery[0] || '');
+  const [linkCopied, setLinkCopied] = React.useState(false);
+
+  const copyPropertyLink = async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    setLinkCopied(true);
+    window.setTimeout(() => setLinkCopied(false), 2000);
+  };
 
   React.useEffect(() => {
     if (gallery.length) {
@@ -123,6 +130,14 @@ const PropertyDetailPage = () => {
               >
                 Lihat Properti Lain
               </Link>
+              <button
+                type="button"
+                onClick={copyPropertyLink}
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-3 font-medium text-gray-700 transition hover:border-teal-500 hover:text-teal-600"
+              >
+                {linkCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                {linkCopied ? 'Link Tersalin' : 'Salin Link'}
+              </button>
             </div>
           </div>
         </div>
