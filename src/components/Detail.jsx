@@ -22,9 +22,14 @@ const Detail = () => {
             <p className="text-gray-600 mb-8 leading-relaxed">
               Halo! Saya siap membantu Anda menemukan properti idaman di Batam. Saat ini saya memasarkan unit eksklusif di <span className="font-bold text-gray-800">Prumahan di batam</span> dan berbagai properti residensial lainnya.
             </p>
-            <button className="bg-teal-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-teal-700 transition w-max">
+            <a
+              href="https://wa.me/6282391059216"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-teal-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-teal-700 transition w-max"
+            >
               Hubungi Frans
-            </button>
+            </a>
           </div>
         </div>
       </div>
