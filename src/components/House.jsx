@@ -76,9 +76,11 @@ const LocationCarousel = ({ location, items }) => {
         >
           {slides.map((slide, index) => (
             <div key={`${location}-${index}`} className="w-full shrink-0">
-              <div className="grid grid-cols-1 gap-3 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-flow-col grid-cols-none auto-cols-[88%] snap-x snap-mandatory gap-3 overflow-x-auto pb-2 sm:grid-flow-row sm:grid-cols-1 sm:auto-cols-auto sm:overflow-visible sm:snap-none sm:pb-0 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {slide.map((property) => (
-                  <Card key={property.id} property={property} />
+                  <div key={property.id} className="snap-start">
+                    <Card property={property} />
+                  </div>
                 ))}
               </div>
             </div>
