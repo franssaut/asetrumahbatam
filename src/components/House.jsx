@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Bath, BedDouble, Ruler } from 'lucide-react';
 import Card from './Card';
 import { PropertyDataNotice, useProperties } from '../PropertiesContext';
@@ -16,16 +16,51 @@ const LocationCarousel = ({ location, items }) => {
   const slides = useMemo(() => createSlides(items), [items]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const mobileTrackRef = useRef(null);
 
   useEffect(() => {
-    if (slides.length < 2 || isPaused) return undefined;
+    if (items.length < 2 || isPaused) return undefined;
 
     const intervalId = window.setInterval(() => {
-      setCurrentSlide((previous) => (previous + 1) % slides.length);
+      if (window.matchMedia('(max-width: 639px)').matches) {
+        const track = mobileTrackRef.current;
+        if (!track) return;
+
+        const cards = Array.from(track.children);
+        const trackLeft = track.getBoundingClientRect().left;
+        const currentIndex = cards.reduce((closestIndex, card, index) => {
+          const closestCard = cards[closestIndex];
+          const cardDistance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+          const closestDistance = Math.abs(closestCard.getBoundingClientRect().left - trackLeft);
+          return cardDistance < closestDistance ? index : closestIndex;
+        }, 0);
+
+        if (currentIndex < cards.length - 1) {
+          const currentLeft = cards[currentIndex].getBoundingClientRect().left;
+          const nextLeft = cards[currentIndex + 1].getBoundingClientRect().left;
+          track.scrollBy({ left: nextLeft - currentLeft, behavior: 'smooth' });
+        } else if (slides.length > 1) {
+          setCurrentSlide((previous) => (previous + 1) % slides.length);
+        } else {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+
+        return;
+      }
+
+      if (slides.length > 1) {
+        setCurrentSlide((previous) => (previous + 1) % slides.length);
+      }
     }, 4000);
 
     return () => window.clearInterval(intervalId);
-  }, [slides.length, isPaused]);
+  }, [items.length, slides.length, isPaused]);
+
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 639px)').matches) {
+      mobileTrackRef.current?.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  }, [currentSlide]);
 
   const goToPrevious = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -76,7 +111,10 @@ const LocationCarousel = ({ location, items }) => {
         >
           {slides.map((slide, index) => (
             <div key={`${location}-${index}`} className="w-full shrink-0">
-              <div className="grid grid-flow-col grid-cols-none auto-cols-[88%] snap-x snap-mandatory gap-3 overflow-x-auto pb-2 sm:grid-flow-row sm:grid-cols-1 sm:auto-cols-auto sm:overflow-visible sm:snap-none sm:pb-0 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div
+                ref={index === currentSlide ? mobileTrackRef : null}
+                className="grid grid-flow-col grid-cols-none auto-cols-[88%] snap-x snap-mandatory gap-3 overflow-x-auto pb-2 sm:grid-flow-row sm:grid-cols-1 sm:auto-cols-auto sm:overflow-visible sm:snap-none sm:pb-0 sm:gap-6 md:grid-cols-2 xl:grid-cols-3"
+              >
                 {slide.map((property) => (
                   <div key={property.id} className="snap-start">
                     <Card property={property} />
