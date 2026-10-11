@@ -1,6 +1,6 @@
 import React from 'react';
 import { Home, Menu, X } from 'lucide-react';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import House from './components/House';
 import Detail from './components/Detail';
 import PropertyDetailPage from './components/PropertyDetailPage';
@@ -33,11 +33,22 @@ const HomePage = () => (
   </>
 );
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <PropertiesProvider>
         <div className="min-h-screen font-sans">
           <nav className="bg-white shadow-md fixed w-full z-10 top-0">

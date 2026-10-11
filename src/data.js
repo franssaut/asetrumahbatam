@@ -147,6 +147,27 @@ export const properties = [
     tag: "Residensial",
     description: "Pilihan rumah yang nyaman untuk tinggal atau disewakan, dengan nilai strategis di area berkembang dan akses yang mudah dijangkau.",
     agent: "Frans Hutapea"
+  },
+  {
+    id: 7,
+    type: 36,
+    houseType: "Rumah",
+    title: "Aster Tropika",
+    price: 290000000,
+    location: "Kabil",
+    beds: 2,
+    baths: 1,
+    sqft: 72,
+    image: "/asset/img/house-3.svg",
+    gallery: [
+      "/asset/img/house-3.svg",
+      "/asset/img/house-4.svg",
+      "/asset/img/house-6.svg",
+      "/asset/img/house-2.svg"
+    ],
+    tag: "Residensial",
+    description: "Pilihan rumah yang nyaman untuk tinggal atau disewakan, dengan nilai strategis di area berkembang dan akses yang mudah dijangkau.",
+    agent: "Frans Hutapea"
   }
 
 ];
