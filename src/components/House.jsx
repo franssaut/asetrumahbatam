@@ -1,12 +1,31 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Bath, BedDouble, Ruler } from 'lucide-react';
 import Card from './Card';
 import { PropertyDataNotice, useProperties } from '../PropertiesContext';
 import { formatRupiah } from '../format';
 
+const createSlides = (items) => {
+  const slides = [];
+  for (let index = 0; index < items.length; index += 3) {
+    slides.push(items.slice(index, index + 3));
+  }
+  return slides;
+};
+
 const LocationCarousel = ({ location, items }) => {
-  const slides = items;
+  const slides = useMemo(() => createSlides(items), [items]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (slides.length < 2 || isPaused) return undefined;
+
+    const intervalId = window.setInterval(() => {
+      setCurrentSlide((previous) => (previous + 1) % slides.length);
+    }, 4000);
+
+    return () => window.clearInterval(intervalId);
+  }, [slides.length, isPaused]);
 
   const goToPrevious = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -17,7 +36,11 @@ const LocationCarousel = ({ location, items }) => {
   };
 
   return (
-    <div className="mb-12 last:mb-0">
+    <div
+      className="mb-12 last:mb-0"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">Lokasi</p>
@@ -48,13 +71,15 @@ const LocationCarousel = ({ location, items }) => {
 
       <div className="overflow-hidden rounded-[24px] bg-gradient-to-br from-teal-50 via-white to-sky-50 p-4 shadow-[0_20px_40px_rgba(13,148,136,0.08)] sm:p-6">
         <div
-          className="flex transition-transform duration-500 ease-out"
+          className="flex transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {slides.map((property) => (
-            <div key={property.id} className="w-full shrink-0">
-              <div className="mx-auto w-full max-w-2xl">
-                <Card property={property} />
+          {slides.map((slide, index) => (
+            <div key={`${location}-${index}`} className="w-full shrink-0">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {slide.map((property) => (
+                  <Card key={property.id} property={property} />
+                ))}
               </div>
             </div>
           ))}
