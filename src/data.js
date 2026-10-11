@@ -149,7 +149,7 @@ export const properties = [
     agent: "Frans Hutapea"
   },
   {
-    id: 7,
+    id: 8,
     type: 36,
     houseType: "Rumah",
     title: "Aster Tropika",
