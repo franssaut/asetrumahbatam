@@ -41,18 +41,18 @@ const LocationCarousel = ({ location, items }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
+      <div className="mb-4 flex items-center justify-between gap-3 sm:mb-6">
+        <div className="min-w-0">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">Lokasi</p>
-          <h3 className="text-2xl font-bold text-gray-900">{location}</h3>
+          <h3 className="break-words text-xl font-bold text-gray-900 sm:text-2xl">{location}</h3>
         </div>
 
         {slides.length > 1 && (
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <button
               type="button"
               onClick={goToPrevious}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:border-teal-500 hover:text-teal-600"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:border-teal-500 hover:text-teal-600 sm:h-11 sm:w-11"
               aria-label={`Previous slide for ${location}`}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -60,7 +60,7 @@ const LocationCarousel = ({ location, items }) => {
             <button
               type="button"
               onClick={goToNext}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:border-teal-500 hover:text-teal-600"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:border-teal-500 hover:text-teal-600 sm:h-11 sm:w-11"
               aria-label={`Next slide for ${location}`}
             >
               <ChevronRight className="h-5 w-5" />
@@ -69,14 +69,14 @@ const LocationCarousel = ({ location, items }) => {
         )}
       </div>
 
-      <div className="overflow-hidden rounded-[24px] bg-gradient-to-br from-teal-50 via-white to-sky-50 p-4 shadow-[0_20px_40px_rgba(13,148,136,0.08)] sm:p-6">
+      <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 via-white to-sky-50 p-2 shadow-[0_20px_40px_rgba(13,148,136,0.08)] sm:rounded-[24px] sm:p-6">
         <div
           className="flex transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {slides.map((slide, index) => (
             <div key={`${location}-${index}`} className="w-full shrink-0">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {slide.map((property) => (
                   <Card key={property.id} property={property} />
                 ))}
