@@ -33,6 +33,7 @@ export const PropertiesProvider = ({ children }) => {
           id: Number(row.id),
           type: Number(row.type),
           houseType: row.house_type || 'Rumah',
+          paymentMethod: row.payment_method || 'Cash Bertahap',
           title: row.title,
           price: Number(row.price),
           location: row.location,

@@ -25,6 +25,9 @@ const Card = ({ property }) => {
           <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
             Type: {property.type}
           </span>
+          <span className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+            Cara bayar: {property.paymentMethod || 'Cash Bertahap'}
+          </span>
         </div>
         <div className="flex items-center text-gray-600 mb-3">
           <MapPin className="h-4 w-4 mr-1" />

@@ -6,7 +6,7 @@ import { properties } from '../src/data.js';
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outputPath = resolve(projectRoot, 'supabase/seed.sql');
 const columns = [
-  'id', 'type', 'house_type', 'title', 'price', 'location', 'beds', 'baths',
+  'id', 'type', 'house_type', 'payment_method', 'title', 'price', 'location', 'beds', 'baths',
   'sqft', 'image', 'gallery', 'tag', 'description', 'agent',
 ];
 
@@ -35,6 +35,7 @@ const rows = properties.map((property) => {
     toSqlNumber(property.id, 'id', property.id),
     toSqlNumber(property.type, 'type', property.id),
     toSqlString(property.houseType || 'Rumah'),
+    toSqlString(property.paymentMethod || 'Cash Bertahap'),
     toSqlString(property.title),
     toSqlNumber(property.price, 'price', property.id),
     toSqlString(property.location),

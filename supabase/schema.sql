@@ -2,6 +2,7 @@ create table if not exists public.properties (
   id bigint primary key,
   type integer not null,
   house_type text not null default 'Rumah',
+  payment_method text not null default 'Cash Bertahap',
   title text not null,
   price bigint not null,
   location text not null,
@@ -14,6 +15,9 @@ create table if not exists public.properties (
   description text not null default '',
   agent text not null default ''
 );
+
+alter table public.properties
+  add column if not exists payment_method text not null default 'Cash Bertahap';
 
 alter table public.properties enable row level security;
 grant select on public.properties to anon, authenticated;
