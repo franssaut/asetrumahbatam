@@ -101,7 +101,7 @@ const PropertyDetailPage = () => {
             <img
               src={selectedImage}
               alt={property.title}
-              className="h-[340px] w-full rounded-[24px] object-cover shadow-md sm:h-[440px]"
+              className="h-[340px] w-full rounded-[24px] bg-slate-100 object-contain shadow-md sm:h-[440px]"
             />
 
             <div className="mt-4 grid grid-cols-4 gap-3">
@@ -114,7 +114,7 @@ const PropertyDetailPage = () => {
                     selectedImage === image ? 'border-teal-500 shadow-md' : 'border-transparent'
                   }`}
                 >
-                  <img src={image} alt={`${property.title} ${index + 1}`} className="h-20 w-full object-cover" />
+                  <img src={image} alt={`${property.title} ${index + 1}`} className="h-20 w-full bg-slate-100 object-contain" />
                 </button>
               ))}
             </div>
