@@ -131,6 +131,9 @@ const PropertyDetailPage = () => {
               <span className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
                 {property.tag}
               </span>
+              <span className="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                Cara bayar: {property.paymentMethod || 'Cash Bertahap'}
+              </span>
             </div>
 
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">{property.title}</h1>
