@@ -1,0 +1,10 @@
+{
+  "name": "Aset Rumah Batam",
+  "short_name": "Aset Rumah",
+  "description": "Jual rumah dan properti pilihan di Batam.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f766e",
+  "icons": []
+}

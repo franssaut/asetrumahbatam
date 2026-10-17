@@ -8,3 +8,7 @@
 4. Restart the Vite server. The home listing and property detail pages will load from Supabase. If configuration or the database is unavailable, the app shows local demo data and a status notice.
 
 The table uses `house_type` in SQL; the app maps it to `houseType` for the existing UI.
+
+## SEO build output
+
+`npm run build` generates `public/sitemap.xml` and static HTML metadata for each property route in `dist/`. Set `SITE_URL` to the canonical production origin if it differs from `https://asetrumahbatam.com`. When both `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are available to the build, the sitemap and property metadata are generated from the public `properties` table; otherwise, local data is used.

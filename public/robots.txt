@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asetrumahbatam.com/sitemap.xml

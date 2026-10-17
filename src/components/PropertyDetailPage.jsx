@@ -26,7 +26,7 @@ const PropertyDetailPage = () => {
     });
   }, [gallery.join('|')]);
 
-  usePropertySeo(property);
+  usePropertySeo(property, properties);
 
   if (property && location.pathname !== propertyPath(property)) {
     return <Navigate replace to={propertyPath(property)} />;
